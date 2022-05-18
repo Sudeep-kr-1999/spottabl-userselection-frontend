@@ -14,14 +14,14 @@
   position: relative;
   display: block;
   font-size: xx-large;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   padding: 2px;
+  margin-bottom: 4px;
 }
 .search-add-container {
   position: relative;
   display: flex;
-  
 }
 .leftbox {
   position: relative;
@@ -39,6 +39,7 @@
   position: relative;
   display: flex;
   padding: 2px;
+  align-items: center;
 }
 .searchboxcontainer {
   position: relative;
@@ -47,13 +48,13 @@
   align-items: center;
 }
 
-.dropdowncontainer{
+.dropdowncontainer {
   position: relative;
-  display: none;
+  /* display: none; */
   /* when visible  */
-  /* display: block; */
+  display: block;
 }
-.dropdown{
+.dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -64,11 +65,17 @@
   top: 0;
   left: 0;
   overflow-y: scroll;
+  z-index: 100;
+  background: white;
 }
 
-.selectedcardscontainer{
+.selectedcardscontainer {
   position: relative;
   display: flex;
-  flex: 1;
-  border: 2px solid red;
+  flex-direction: column;
+  height: 38em;
+  margin-top: 40px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px grey;
+  overflow-y: scroll;
 }

@@ -1,0 +1,66 @@
+.selected-cards-container {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.selected-cards-container::after {
+  position: relative;
+  display: flex;
+  flex: 1;
+  content: " ";
+  height: 1px;
+  background-color: lightgray;
+}
+.selected-cards-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.user-details-cards {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.avatar-cards {
+  position: relative;
+  display: block;
+  margin: 10px;
+}
+
+.userdescription-cards {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.username-cards {
+  position: relative;
+  display: block;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  margin: 2px;
+}
+
+.useroccupation-cards {
+  position: relative;
+  display: block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2px;
+  font-weight: 550;
+  color: black;
+}
+
+.deleteicon {
+  position: relative;
+  display: block;
+}
+
+.deleteicon:hover{
+  cursor: pointer;
+}

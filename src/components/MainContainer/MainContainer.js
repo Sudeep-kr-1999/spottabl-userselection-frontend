@@ -77,7 +77,16 @@ function MainContainer() {
         </div>
       </div>
       <div className="selectedcardscontainer">
-        <SelectedCards />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
+        <SelectedCards username="Sudeep Kumar" useroccupation="Student" />
       </div>
     </div>
   );
