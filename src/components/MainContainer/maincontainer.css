@@ -1,0 +1,74 @@
+.maincontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 20px;
+  border-style: none;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 8px;
+  flex: 1;
+  background-color: white;
+}
+.container-heading {
+  position: relative;
+  display: block;
+  font-size: xx-large;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  padding: 2px;
+}
+.search-add-container {
+  position: relative;
+  display: flex;
+  
+}
+.leftbox {
+  position: relative;
+  display: flex;
+  flex: 1;
+  padding: 2px;
+  border: 0.2px solid lightgray;
+}
+.submitbtncontainer {
+  position: relative;
+  display: block;
+  padding: 2px;
+}
+.searcheditemcontainer {
+  position: relative;
+  display: flex;
+  padding: 2px;
+}
+.searchboxcontainer {
+  position: relative;
+  display: flex;
+  padding: 2px;
+  align-items: center;
+}
+
+.dropdowncontainer{
+  position: relative;
+  display: none;
+  /* when visible  */
+  /* display: block; */
+}
+.dropdown{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 30em;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px grey;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+}
+
+.selectedcardscontainer{
+  position: relative;
+  display: flex;
+  flex: 1;
+  border: 2px solid red;
+}

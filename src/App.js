@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import logo from "./assets/logo.png";
+import MainContainer from "./components/MainContainer/MainContainer";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="header">
+        <span className="logo">
+          <img src={logo} alt="brand-logo" className="logo-image" />
+        </span>
+        <div className="headings">
+          <span className="heading-1">YOUR SPOTTABL TEAM</span>
+          <span className="heading-2">
+            Spottabl supports you all throughout
+          </span>
+        </div>
+      </div>
+      <MainContainer />
     </div>
   );
 }

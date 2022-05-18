@@ -1,0 +1,41 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import Select from "react-select";
+
+const options = [
+  { value: "Abe", label: "Abe", customAbbreviation: "A" },
+  { value: "John", label: "John", customAbbreviation: "J" },
+  { value: "Dustin", label: "Dustin", customAbbreviation: "D" }
+];
+
+const formatOptionLabel = ({ value, label, customAbbreviation }) => (
+  <div style={{ display: "flex" }}>
+    <div>{label}</div>
+    <div style={{ marginLeft: "10px", color: "#ccc" }}>
+      {customAbbreviation}
+    </div>
+  </div>
+);
+
+const MultiValueLabel=(val)=>{
+  console.log(val);
+  return <div>{val.data.value}</div>
+}
+
+const IndicatorsContainer=()=>(
+  null
+)
+const CustomControl = () => (
+  <Select
+    defaultValue={options[0]}
+    formatOptionLabel={formatOptionLabel}
+    options={options}
+    isMulti
+    components={{
+      MultiValueLabel,
+      IndicatorsContainer
+    }}
+  />
+);
+
+ReactDOM.render(<CustomControl />, document.getElementById("root"));
