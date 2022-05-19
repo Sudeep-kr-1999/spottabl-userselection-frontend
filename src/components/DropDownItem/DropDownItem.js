@@ -27,6 +27,7 @@ function DropDownItem({ id, username, useroccupation, useremmail }) {
             {...stringAvatar(username)}
             sx={{
               color: "black",
+              backgroundColor:"#d8dcfc",
               height: "60px",
               width: "60px",
             }}

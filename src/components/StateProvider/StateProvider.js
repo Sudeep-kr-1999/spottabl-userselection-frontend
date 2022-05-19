@@ -3,15 +3,18 @@ export const UserDetailsContext = createContext();
 function StateProvider({ children }) {
   const [dropdownDisplay, setdropdownDisplay] = useState("none");
   const [selectedData, setselectedData] = useState([]);
+  const [addingDeletingCount, setaddingDeletingCount] = useState(0);
+
+  const changeAddingDeletingCount = (newCount) => {
+    setaddingDeletingCount(newCount);
+  };
   const changeDropDownDisplay = (newstate) => {
     setdropdownDisplay(newstate);
   };
-
   const addToSelectedData = (newData) => {
     setselectedData((previousState) => [...previousState, newData]);
   };
-
-  const chageSelectedData = (newdata) => {
+  const changeSelectedData = (newdata) => {
     setselectedData(newdata);
   };
 
@@ -22,7 +25,9 @@ function StateProvider({ children }) {
         changeDropDownDisplay,
         selectedData,
         addToSelectedData,
-        chageSelectedData,
+        changeSelectedData,
+        addingDeletingCount,
+        changeAddingDeletingCount,
       }}
     >
       {children}

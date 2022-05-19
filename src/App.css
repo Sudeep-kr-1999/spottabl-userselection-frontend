@@ -1,11 +1,11 @@
 .App {
   position: relative;
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin: 0;
-  padding:20px;
+  padding: 20px;
   box-sizing: border-box;
-  background-color:lightcyan;
+  background-color: "#f8f9fe";
 }
 
 .header {

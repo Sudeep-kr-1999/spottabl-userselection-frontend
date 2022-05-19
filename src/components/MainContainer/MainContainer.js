@@ -14,55 +14,95 @@ import Chip from "@mui/material/Chip";
 import demoData from "../demodata.json";
 import { UserDetailsContext } from "../StateProvider/StateProvider";
 function MainContainer() {
-  const [displayData, setdisplayData] = useState([]);
   const [searchData, setsearchData] = useState("");
   const [optionData, setoptionData] = useState([]);
+  const [displayData, setdisplayData] = useState([]);
   const inputRef = useRef(null);
+  const {
+    dropdownDisplay,
+    changeDropDownDisplay,
+    selectedData,
+    changeSelectedData,
+    addingDeletingCount,
+    changeAddingDeletingCount,
+  } = useContext(UserDetailsContext);
+
   const loadDisplayData = useCallback(() => {
     if (localStorage.getItem("displayData") !== null) {
       let data = JSON.parse(localStorage.getItem("displayData"));
       setdisplayData(data);
     }
+  }, [setdisplayData]);
+
+  const setSearchedData = useCallback((newSearchData) => {
+    clearTimeout(inputRef.current);
+    inputRef.current = setTimeout(() => {
+      setsearchData(newSearchData);
+    }, 500);
   }, []);
-
-  const {
-    dropdownDisplay,
-    changeDropDownDisplay,
-    selectedData,
-    chageSelectedData,
-  } = useContext(UserDetailsContext);
-
-  const setSearchedData = useCallback(
-    (newSearchData) => {
-      clearTimeout(inputRef.current);
-      inputRef.current = setTimeout(() => {
-        setsearchData(newSearchData);
-      }, 500);
-    },
-    [searchData]
-  );
 
   const handleDelete = useCallback(
     (userId) => {
       let newSelectedData = selectedData.filter(({ id }) => id !== userId);
-      chageSelectedData(newSelectedData);
+      changeSelectedData(newSelectedData);
     },
-    [selectedData]
+    [selectedData, changeSelectedData]
   );
+
+  const saveDisplayData = useCallback(() => {
+    if (localStorage.getItem("displayData") !== null) {
+      let currentdata = JSON.parse(localStorage.getItem("displayData"));
+      selectedData.forEach((element) => {
+        currentdata.push(element);
+      });
+      localStorage.setItem("displayData", JSON.stringify(currentdata));
+      changeSelectedData([]);
+      changeDropDownDisplay("none");
+      setsearchData("");
+      setoptionData([]);
+      changeAddingDeletingCount(addingDeletingCount + 1);
+    } else {
+      let addingData = JSON.stringify(selectedData);
+      console.log(addingData);
+      localStorage.setItem("displayData", addingData);
+      changeSelectedData([]);
+      changeDropDownDisplay("none");
+      setsearchData("");
+      setoptionData([]);
+      changeAddingDeletingCount(addingDeletingCount + 1);
+    }
+  }, [
+    selectedData,
+    changeDropDownDisplay,
+    changeSelectedData,
+    setoptionData,
+    addingDeletingCount,
+    changeAddingDeletingCount,
+  ]);
 
   useEffect(() => {
     loadDisplayData();
-  }, [displayData]);
+  }, [addingDeletingCount]);
 
-  useEffect(() => {
+  const searchDataFunction = useCallback(() => {
     if (searchData.length > 0) {
-      let optionarray = demoData.filter(
-        ({ first_name, last_name, email }) =>
-          first_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
-          last_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
-          email.toLowerCase().startsWith(searchData.toLowerCase())
-      );
-
+      let optionarray = [];
+      if (displayData.length > 0) {
+        optionarray = demoData.filter(
+          ({ id, first_name, last_name, email }) =>
+            !displayData.find((object) => object.id === id) &&
+            (first_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
+              last_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
+              email.toLowerCase().startsWith(searchData.toLowerCase()))
+        );
+      } else {
+        optionarray = demoData.filter(
+          ({ first_name, last_name, email }) =>
+            first_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
+            last_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
+            email.toLowerCase().startsWith(searchData.toLowerCase())
+        );
+      }
       let displayoptionarray = optionarray.filter(
         (object) => !selectedData.includes(object)
       );
@@ -77,7 +117,11 @@ function MainContainer() {
       setoptionData([]);
       changeDropDownDisplay("none");
     }
-  }, [searchData, dropdownDisplay,selectedData]);
+  }, [searchData, selectedData, changeDropDownDisplay, displayData]);
+
+  useEffect(() => {
+    searchDataFunction();
+  }, [searchData, selectedData]);
 
   return (
     <div className="maincontainer">
@@ -90,7 +134,13 @@ function MainContainer() {
                 key={id}
                 label={first_name + " " + last_name}
                 onDelete={() => handleDelete(id)}
-                style={{ margin: "5px" }}
+                style={{
+                  margin: "5px",
+                  backgroundColor: "#d8dcfc",
+                  color: "#1a33a2",
+                  fontWeight: "bold",
+                  borderRadius: "5px",
+                }}
               />
             ))}
             <div className="searchboxcontainer">
@@ -98,6 +148,7 @@ function MainContainer() {
                 id="standard-basic"
                 placeholder="Add by Name or email"
                 variant="standard"
+                value={searchData}
                 onChange={(event) => setSearchedData(event.target.value)}
                 InputProps={{
                   disableUnderline: true,
@@ -112,6 +163,7 @@ function MainContainer() {
             style={{ textTransform: "none" }}
             variant="contained"
             disableElevation
+            onClick={saveDisplayData}
             sx={{
               backgroundColor: "darkBlue",
               width: "200px",
