@@ -50,9 +50,6 @@
 
 .dropdowncontainer {
   position: relative;
-  /* display: none; */
-  /* when visible  */
-  display: block;
 }
 .dropdown {
   position: absolute;
