@@ -7,8 +7,12 @@ function StateProvider({ children }) {
     setdropdownDisplay(newstate);
   };
 
-  const changeSelectedData = (newData) => {
+  const addToSelectedData = (newData) => {
     setselectedData((previousState) => [...previousState, newData]);
+  };
+
+  const chageSelectedData = (newdata) => {
+    setselectedData(newdata);
   };
 
   return (
@@ -17,7 +21,8 @@ function StateProvider({ children }) {
         dropdownDisplay,
         changeDropDownDisplay,
         selectedData,
-        changeSelectedData,
+        addToSelectedData,
+        chageSelectedData,
       }}
     >
       {children}

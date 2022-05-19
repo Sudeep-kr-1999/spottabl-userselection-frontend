@@ -2,12 +2,17 @@ import React, { useCallback } from "react";
 import "./selectedcards.css";
 import Avatar from "@mui/material/Avatar";
 import DeleteIcon from "@mui/icons-material/Delete";
-function SelectedCards({ username, useroccupation }) {
+function SelectedCards({ id, username, useroccupation }) {
   const stringAvatar = useCallback((userName) => {
     return {
       children: `${userName.split(" ")[0][0]}${userName.split(" ")[1][0]}`,
     };
   }, []);
+
+  const deleteSelectedItem = useCallback((event) => {
+    console.log(event.currentTarget.id);
+  }, []);
+
   return (
     <div className="selected-cards-container">
       <div className="selected-cards-item">
@@ -28,8 +33,10 @@ function SelectedCards({ username, useroccupation }) {
             <span className="useroccupation-cards">{useroccupation}</span>
           </div>
         </div>
-        <span className="deleteicon">
-          <DeleteIcon style={{ color: "darkblue",height:"35px",width:"35px" }} />
+        <span className="deleteicon" id={`${id}`} onClick={deleteSelectedItem}>
+          <DeleteIcon
+            style={{ color: "darkblue", height: "35px", width: "35px" }}
+          />
         </span>
       </div>
     </div>

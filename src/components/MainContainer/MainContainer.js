@@ -10,8 +10,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DropDownItem from "../DropDownItem/DropDownItem";
 import SelectedCards from "../SelectedCards/SelectedCards";
-// import Chip from "@mui/material/Chip";
-import demoData from "./demodata.json";
+import Chip from "@mui/material/Chip";
+import demoData from "../demodata.json";
 import { UserDetailsContext } from "../StateProvider/StateProvider";
 function MainContainer() {
   const [displayData, setdisplayData] = useState([]);
@@ -29,7 +29,7 @@ function MainContainer() {
     dropdownDisplay,
     changeDropDownDisplay,
     selectedData,
-    changeSelectedData,
+    chageSelectedData,
   } = useContext(UserDetailsContext);
 
   const setSearchedData = useCallback(
@@ -42,9 +42,16 @@ function MainContainer() {
     [searchData]
   );
 
+  const handleDelete = useCallback(
+    (userId) => {
+      let newSelectedData = selectedData.filter(({ id }) => id !== userId);
+      chageSelectedData(newSelectedData);
+    },
+    [selectedData]
+  );
+
   useEffect(() => {
     loadDisplayData();
-    console.log(demoData);
   }, [displayData]);
 
   useEffect(() => {
@@ -55,36 +62,49 @@ function MainContainer() {
           last_name.toLowerCase().startsWith(searchData.toLowerCase()) ||
           email.toLowerCase().startsWith(searchData.toLowerCase())
       );
-      if (optionarray.length > 0) {
+
+      let displayoptionarray = optionarray.filter(
+        (object) => !selectedData.includes(object)
+      );
+      if (displayoptionarray.length > 0) {
         changeDropDownDisplay("block");
-        setoptionData(optionarray);
+        setoptionData(displayoptionarray);
+      } else {
+        setoptionData([]);
+        changeDropDownDisplay("none");
       }
     } else {
       setoptionData([]);
       changeDropDownDisplay("none");
     }
-  }, [searchData]);
+  }, [searchData, dropdownDisplay,selectedData]);
 
   return (
     <div className="maincontainer">
       <span className="container-heading">Customer Success Managers</span>
       <div className="search-add-container">
         <div className="leftbox">
-          <div className="searcheditemcontainer"></div>
-          <div className="searchboxcontainer">
-            <TextField
-              fullWidth
-              id="standard-basic"
-              placeholder="Add by Name or email"
-              variant="standard"
-              onChange={(event) => setSearchedData(event.target.value)}
-              InputProps={{
-                disableUnderline: true,
-              }}
-              sx={{
-                flex: 1,
-              }}
-            />
+          <div className="searcheditemcontainer">
+            {selectedData.map(({ id, first_name, last_name }) => (
+              <Chip
+                key={id}
+                label={first_name + " " + last_name}
+                onDelete={() => handleDelete(id)}
+                style={{ margin: "5px" }}
+              />
+            ))}
+            <div className="searchboxcontainer">
+              <TextField
+                id="standard-basic"
+                placeholder="Add by Name or email"
+                variant="standard"
+                onChange={(event) => setSearchedData(event.target.value)}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                style={{ width: "100%", marginLeft: "10px" }}
+              />
+            </div>
           </div>
         </div>
         <div className="submitbtncontainer">
@@ -112,6 +132,7 @@ function MainContainer() {
             ({ id, first_name, last_name, job_description, email }) => (
               <DropDownItem
                 key={id}
+                id={id}
                 username={first_name + " " + last_name}
                 useroccupation={job_description}
                 useremmail={email}
@@ -124,6 +145,7 @@ function MainContainer() {
         {displayData.map(({ id, first_name, last_name, job_description }) => (
           <SelectedCards
             key={id}
+            id={id}
             username={first_name + " " + last_name}
             useroccupation={job_description}
           />

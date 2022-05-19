@@ -1,20 +1,30 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import "./dropdownitem.css";
 import Avatar from "@mui/material/Avatar";
 import PersonIcon from "@mui/icons-material/Person";
 import CircleIcon from "@mui/icons-material/Circle";
-function DropDownItem({ username, useroccupation, useremmail }) {
+import demoData from "../demodata.json";
+import { UserDetailsContext } from "../StateProvider/StateProvider";
+function DropDownItem({ id, username, useroccupation, useremmail }) {
+  const { changeDropDownDisplay, addToSelectedData } =
+    useContext(UserDetailsContext);
   const stringAvatar = useCallback((userName) => {
     return {
       children: `${userName.split(" ")[0][0]}${userName.split(" ")[1][0]}`,
     };
   }, []);
+
+  const setSearchedChips = useCallback((event) => {
+    changeDropDownDisplay("none");
+    let chipData = demoData.filter(({ id }) => event.currentTarget.id == id);
+    addToSelectedData(chipData[0]);
+  }, []);
   return (
-    <div className="dropdownparent">
+    <div className="dropdownparent" id={`${id}`} onClick={setSearchedChips}>
       <div className="drop-down-item">
         <span className="avatar">
           <Avatar
-            {...stringAvatar("Sudeep Kumar")}
+            {...stringAvatar(username)}
             sx={{
               color: "black",
               height: "60px",
