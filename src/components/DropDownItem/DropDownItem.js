@@ -27,7 +27,7 @@ function DropDownItem({ id, username, useroccupation, useremmail }) {
             {...stringAvatar(username)}
             sx={{
               color: "black",
-              backgroundColor:"#d8dcfc",
+              backgroundColor: "#d8dcfc",
               height: "60px",
               width: "60px",
             }}
@@ -37,18 +37,22 @@ function DropDownItem({ id, username, useroccupation, useremmail }) {
         <div className="userdetails">
           <span className="username">{username}</span>
           <div className="userdescription">
-            <span className="userlogo">
-              <PersonIcon
-                style={{ height: "20px", width: "20px", color: "grey" }}
-              />
-            </span>
-            <span className="useroccupation">{useroccupation}</span>
-            <span className="emaillogo">
-              <CircleIcon
-                style={{ height: "10px", width: "10px", color: "grey" }}
-              />
-            </span>
-            <span className="useremail">{useremmail}</span>
+            <div className="userlogo-occupation">
+              <span className="userlogo">
+                <PersonIcon
+                  style={{ height: "20px", width: "20px", color: "grey" }}
+                />
+              </span>
+              <span className="useroccupation">{useroccupation}</span>
+            </div>
+            <div className="emaillogo-email">
+              <span className="emaillogo">
+                <CircleIcon
+                  style={{ height: "10px", width: "10px", color: "grey" }}
+                />
+              </span>
+              <span className="useremail">{useremmail}</span>
+            </div>
           </div>
         </div>
       </div>

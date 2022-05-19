@@ -20,7 +20,7 @@
   margin: 20px;
   flex: 1;
 }
-.dropdownparent:hover{
+.dropdownparent:hover {
   background-color: lightgray;
   cursor: pointer;
 }
@@ -71,4 +71,72 @@
 .useremail {
   position: relative;
   display: block;
+}
+
+.userlogo-occupation {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.emaillogo-email {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .username {
+    font-size: 20px;
+  }
+  .avatar > .MuiAvatar-root {
+    height: 55px;
+    width: 55px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .userdescription {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 550px) {
+  .username {
+    font-size: 18px;
+  }
+  .userdescription {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .username {
+    font-size: 14px;
+  }
+  .userdescription {
+    font-size: 10px;
+  }
+  .avatar > .MuiAvatar-root {
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .username {
+    font-size: 10px;
+  }
+  .userdescription {
+    font-size: 8px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .username {
+    font-size: 8px;
+  }
+  .userdescription {
+    font-size: 6px;
+  }
 }

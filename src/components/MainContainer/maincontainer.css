@@ -28,11 +28,7 @@
   flex: 1;
   padding: 2px;
   flex-wrap: wrap;
-  border: 0.2px solid lightgray;
-}
-.submitbtncontainer {
-  position: relative;
-  display: block;
+  border: 1px solid lightgray;
 }
 .searcheditemcontainer {
   position: relative;
@@ -41,11 +37,16 @@
   flex-wrap: wrap;
   align-items: center;
 }
+.chips {
+  position: relative;
+  display: block;
+}
 .searchboxcontainer {
   position: relative;
   display: flex;
   align-items: center;
   flex: 1;
+  min-width: 200px;
 }
 
 .dropdowncontainer {
@@ -75,4 +76,57 @@
   border-radius: 5px;
   box-shadow: 1px 1px 5px grey;
   overflow-y: scroll;
+}
+
+.submitbtncontainer {
+  position: relative;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+  .container-heading {
+    font-size: x-large;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container-heading {
+    font-size: 20px;
+  }
+  .buttonmui {
+    width: 130px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container-heading {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container-heading {
+    font: size 14px;
+  }
+  .submitbtncontainer > .MuiButton-root {
+    width: 80px;
+    height: 40px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .submitbtncontainer > .MuiButton-root {
+    width: 80px;
+    height: 40px;
+    font-size: 10px;
+  }
+  .leftbox {
+    display: block;
+    width: 100px;
+  }
+  .searchboxcontainer {
+    display: block;
+    min-width: 50px;
+  }
 }

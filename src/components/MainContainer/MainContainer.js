@@ -124,6 +124,7 @@ function MainContainer() {
                 key={id}
                 label={first_name + " " + last_name}
                 onDelete={() => handleDelete(id)}
+                className="chips"
                 style={{
                   margin: "5px",
                   backgroundColor: "#d8dcfc",
@@ -139,11 +140,14 @@ function MainContainer() {
                 placeholder="Add by Name or email"
                 variant="standard"
                 value={searchData}
+                className="textfieldsearch"
                 onChange={(event) => setSearchedData(event.target.value)}
                 InputProps={{
                   disableUnderline: true,
                 }}
-                style={{ width: "100%", marginLeft: "10px" }}
+                style={{
+                  minWidth: "100%",
+                }}
               />
             </div>
           </div>
@@ -154,11 +158,11 @@ function MainContainer() {
             variant="contained"
             disableElevation
             onClick={saveDisplayData}
+            className="buttonmui"
             sx={{
               backgroundColor: "darkBlue",
-              width: "200px",
               fontFamily: "sans-serif",
-              fontSize: "20px",
+              fontSize: "18px",
             }}
           >
             Add CSM

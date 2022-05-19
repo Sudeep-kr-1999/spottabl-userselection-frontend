@@ -30,6 +30,7 @@ function SelectedCards({ id, username, useroccupation }) {
         <div className="user-details-cards">
           <span className="avatar-cards">
             <Avatar
+              className="avatar-mui"
               {...stringAvatar(username)}
               sx={{
                 color: "black",

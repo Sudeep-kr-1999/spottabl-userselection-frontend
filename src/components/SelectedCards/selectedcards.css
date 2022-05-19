@@ -31,6 +31,10 @@
   display: block;
   margin: 10px;
 }
+.avatar-mui {
+  position: relative;
+  display: block;
+}
 
 .userdescription-cards {
   position: relative;
@@ -59,8 +63,35 @@
 .deleteicon {
   position: relative;
   display: block;
+  margin-left: 20px;
 }
 
-.deleteicon:hover{
+.deleteicon:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .username-cards {
+    font-size: 20px;
+  }
+  .useroccupation-cards {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .username-cards {
+    font-size: 15px;
+  }
+  .useroccupation-cards {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .username-cards {
+    font-size: 12px;
+  }
+  .useroccupation-cards {
+    font-size: 8px;
+  }
 }
