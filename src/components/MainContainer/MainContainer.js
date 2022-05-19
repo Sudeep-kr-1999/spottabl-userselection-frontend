@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./maincontainer.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -17,7 +11,6 @@ function MainContainer() {
   const [searchData, setsearchData] = useState("");
   const [optionData, setoptionData] = useState([]);
   const [displayData, setdisplayData] = useState([]);
-  const inputRef = useRef(null);
   const {
     dropdownDisplay,
     changeDropDownDisplay,
@@ -35,10 +28,7 @@ function MainContainer() {
   }, [setdisplayData]);
 
   const setSearchedData = useCallback((newSearchData) => {
-    clearTimeout(inputRef.current);
-    inputRef.current = setTimeout(() => {
-      setsearchData(newSearchData);
-    }, 500);
+    setsearchData(newSearchData);
   }, []);
 
   const handleDelete = useCallback(
